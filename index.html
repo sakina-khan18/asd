@@ -7,7 +7,16 @@
 </head>
 <body>
 
-<p>My name is sakina khan</p>
-
+<p></p>
+<button> Click</button>
 </body>
+<script>
+    var butto=document.querySelector("button");
+    var counter=0;
+    butto.addEventListener("click",function(){
+        counter++;
+     
+            document.querySelector("p").innerHTML="<p>counter is "+counter+"</p>";
+    })
+    </script>
 </html>
