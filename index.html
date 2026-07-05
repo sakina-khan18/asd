@@ -6,17 +6,31 @@
 <title>Basic Website with TOC</title>
 </head>
 <body>
-
-<p></p>
-<button> Click</button>
+    <input type="text" id="searchInput" placeholder="Search..."/>
+    <button id="searchButton">Search</button>
 </body>
 <script>
-    var butto=document.querySelector("button");
-    var counter=0;
-    butto.addEventListener("click",function(){
-        counter++;
-     
-            document.querySelector("p").innerHTML="<p>counter is "+counter+"</p>";
+      var searchButton=document.getElementById("searchButton")
+      searchButton.addEventListener("click",async ()=>
+    {
+        var search=document.getElementById("searchInput").value;
+                var data=await fetch(`https://wttr.in/${search}?format=j1`)
+                var res=await data.json()
+                var {current_condition}=res
+                console.log(current_condition[0].FeelsLikeC)
+                var dat=current_condition[0].FeelsLikeC
+                var x=document.createElement("p")
+               
+                x.innerText=dat
+                 document.body.appendChild(x)
+                
+                console.log(res)
+                console.log(data)
+
+
+       
     })
+
+      
     </script>
 </html>
