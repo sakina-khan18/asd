@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+</head>
+<body>
+     <div>
+        <h1>ToDO App</h1>
+        <input id="name" type="text"/>
+        <button id="add" onclick="addtodo()">+</button>
+        <ul id="task">
+            
+        </ul>
+
+     </div>
+</body>
+<script>
+   async function addtodo()
+    {
+      
+        console.log("da")
+       var ul=document.getElementById("task")
+        var list=document.createElement("li")
+        list.innerText=document.getElementById("name").value
+        var l=list.innerText
+        var button=document.createElement("button")
+        ul.appendChild(list)
+       
+         var data = await fetch ("http://localhost:3000/todos",{method:"POST",body:l,headers: {
+      "Content-Type": "text/plain"
+    },})
+      
+       }
+    
+       // console.log(res)
+    
+       async function main()
+       {
+         var data2 = await fetch ("http://localhost:3000/todos")
+       var getdata=(await data2.json())
+
+       for(let i=0;i<getdata.length;i++)
+       {
+          var ul=document.getElementById("task")
+        var list=document.createElement("li")
+        list.innerText=getdata[i]
+        console.log(getdata[i])
+        var l=list.innerText
+        var button=document.createElement("button")
+        ul.appendChild(list)
+        
+       }
+    }
+    main();
+  
+</script>
+</html>
